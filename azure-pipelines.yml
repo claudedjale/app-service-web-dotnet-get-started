@@ -27,8 +27,6 @@ steps:
     appType: 'webAppWindows'
     appName: 'newappclaudette'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-
-steps:
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
