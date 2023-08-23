@@ -15,6 +15,20 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'df544626-fb1e-4cf9-9e97-81fc4ed4ad99'
+    appType: 'webAppWindows'
+    appName: 'newappclaudette'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+steps:
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
